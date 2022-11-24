@@ -33,9 +33,10 @@ public class CityServiceImpl implements CityService {
 
     
 
+    // method import excel
     @Override
     public void importExcelDocument(List<MultipartFile> multipartFiles) {
-        // TODO Auto-generated method stub
+        // Kerjakan jika data tidak kosong
         if (!multipartFiles.isEmpty()) {
             List<CityModel> cityModels = new ArrayList<>();
             multipartFiles.forEach(multipartFile -> {
@@ -50,6 +51,7 @@ public class CityServiceImpl implements CityService {
                             continue;
                         }
 
+                        //initialisasi set variable get data dari column excel
                         String getId        = String.valueOf(row.getCell(0));
                         Float setIdFloat    = Float.parseFloat(getId);
                         String setIdString   = String.format("%.0f", setIdFloat);
@@ -84,6 +86,7 @@ public class CityServiceImpl implements CityService {
                 }
             }); 
 
+            // Simpan data ke database
             if (!cityModels.isEmpty()) {
                 cityRepository.saveAll(cityModels);
             }
@@ -123,6 +126,7 @@ public class CityServiceImpl implements CityService {
 
 
 
+    //Method untuk menampilkan custom json
     @Override
     public Suggestions getPlace(String nameString, String latString, String longiString) {
         Suggestions sugesstions = new Suggestions();
@@ -141,10 +145,10 @@ public class CityServiceImpl implements CityService {
         } catch (Exception e) {
            sugesstions = null;
         }
-
         return sugesstions;
     }
 
+    //Method kalkulasi untuk menampilkan score
     public static Double calculateLocationScore(Double latDb, Double longDb, Double latString, Double longString){
         Double score = (double) 0;
         Double latDouble = Math.abs(latDb - latString);

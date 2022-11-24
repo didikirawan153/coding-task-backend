@@ -15,7 +15,8 @@ import codingtask.backend.codingtaskbackend.model.CityModel;
 @Transactional
 public interface CityRepository extends JpaRepository<CityModel,Long> {
     
+    // Query untuk menampilkan data berdasarkan custom trigonomerti
     @Modifying
-    @Query(value = "SELECT *,(3959 * ACOS(COS(RADIANS(:lat)) * COS(RADIANS(lat)) * COS(RADIANS(longi) - RADIANS(:longi)) + SIN( RADIANS(:lat)) * SIN( RADIANS(lat)))) AS distance FROM table_geoname WHERE name LIKE %:name% HAVING distance < 25 ORDER BY distance LIMIT 0 , 5", nativeQuery = true)
+    @Query(value = "SELECT *,(3959 * ACOS(COS(RADIANS(:lat)) * COS(RADIANS(lat)) * COS(RADIANS(longi) - RADIANS(:longi)) + SIN( RADIANS(:lat)) * SIN( RADIANS(lat)))) AS distance FROM table_geoname WHERE name LIKE %:name% HAVING distance < 50 ORDER BY distance", nativeQuery = true)
     List<CityModel> getPlace(@Param("name") String nameString, @Param("lat") String latString, @Param("longi") String longiString);
 }

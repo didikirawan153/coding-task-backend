@@ -14,6 +14,7 @@ public class ResponseUtil {
 
     }
 
+    //Tidak jadi digunakan karena end pointnya sedikit
     public static <T> ApiResponse<T> build(String message, T data){
         return ApiResponse.<T>builder()
                 .status(ApiResponseStatus.builder()

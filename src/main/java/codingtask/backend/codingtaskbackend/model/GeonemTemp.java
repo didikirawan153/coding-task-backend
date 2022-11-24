@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class GeonemTemp {
+    //Variabel penampung temporary
     private String name;
     private String latitude;
     private String longitude;
