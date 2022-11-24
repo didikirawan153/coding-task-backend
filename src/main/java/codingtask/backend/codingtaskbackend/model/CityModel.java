@@ -25,6 +25,7 @@ public class CityModel extends BaseDao {
     @Column(name = "ascii")
     private String ascii;
 
+    @Lob
     @Column(name = "alt_name")
     private String altName;
 
@@ -55,6 +56,7 @@ public class CityModel extends BaseDao {
     @Column(name = "admin_four")
     private String adminFour;
 
+    @Lob
     @Column(name = "population")
     private String population;
 
